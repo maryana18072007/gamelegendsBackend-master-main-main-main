@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import br.gamelegends.gamelegends.model.Cadastro; // Importar o modelo Cadastro
+import br.gamelegends.gamelegends.model.Cadastro;
 import br.gamelegends.gamelegends.model.Login;
 import br.gamelegends.gamelegends.model.LoginRepository;
 import jakarta.transaction.Transactional;
