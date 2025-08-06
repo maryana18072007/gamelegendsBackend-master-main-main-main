@@ -1,11 +1,11 @@
 package br.gamelegends.gamelegends.control;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +49,7 @@ public class ProjetosController {
             byte[] imagem = projetoOpt.get().getFoto();
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.IMAGE_JPEG); // ou MediaType.IMAGE_PNG se for o caso
-            return new ResponseEntity<>(imagem, headers, HttpStatus.OK);
+            return new ResponseEntity<byte[]>(imagem, headers, HttpStatus.OK);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -58,12 +58,12 @@ public class ProjetosController {
     // POST: Cria um projeto com ou sem foto (campo correto: foto)
     @PostMapping("/createComFoto")
     public ResponseEntity<?> createProjeto(
-       @RequestParam("nomeProjeto") String nomeProjeto,
-       @RequestParam("descricao") String descricao,
-       @RequestParam("dataInicio") String dataInicio,
-       @RequestParam("tecnologias") String tecnologias,
-       @RequestParam("genero") String genero,
-       @RequestParam(value = "foto", required = false) MultipartFile foto) {
+       @RequestParam String nomeProjeto,
+       @RequestParam String descricao,
+       @RequestParam String dataInicio,
+       @RequestParam String tecnologias,
+       @RequestParam String genero,
+       @RequestParam(required = false) MultipartFile foto) {
 
         if (projetosService.existsByName(nomeProjeto)) {
             return ResponseEntity.badRequest().body(new MessageResponse("Projeto já cadastrado!"));
