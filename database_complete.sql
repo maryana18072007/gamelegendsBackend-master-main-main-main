@@ -49,16 +49,16 @@ CREATE TABLE Doacao (
 );
 
 -- Tabela Projetos
-IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='Projetos' AND xtype='U')
-CREATE TABLE Projetos (
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='projetos' AND xtype='U')
+CREATE TABLE projetos (
     id BIGINT IDENTITY(1,1) PRIMARY KEY,
-    nome NVARCHAR(255) NOT NULL,
-    descricao NVARCHAR(MAX),
-    categoria NVARCHAR(100),
-    plataforma NVARCHAR(100),
-    imagem NVARCHAR(500),
-    desenvolvedor NVARCHAR(255),
-    dataLancamento DATE
+    nomeProjeto NVARCHAR(255) NOT NULL UNIQUE,
+    descricao NVARCHAR(500) NOT NULL,
+    dataInicio NVARCHAR(255) NOT NULL,
+    tecnologias NVARCHAR(255) NOT NULL,
+    genero NVARCHAR(255) NOT NULL,
+    statusProjeto NVARCHAR(255),
+    foto VARBINARY(MAX)
 );
 
 -- Tabela Fatura

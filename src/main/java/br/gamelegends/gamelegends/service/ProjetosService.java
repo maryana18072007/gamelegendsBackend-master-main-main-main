@@ -51,6 +51,7 @@ public class ProjetosService {
         projeto.setDataInicio(dataInicio);
         projeto.setTecnologias(tecnologias);
         projeto.setGenero(genero);
+        projeto.setStatusProjeto("Ativo");
 
         // Salva o binário no banco (byte[]) - NÃO salva no disco!
         if (foto != null && !foto.isEmpty()) {
